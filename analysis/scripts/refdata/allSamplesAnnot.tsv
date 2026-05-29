@@ -1,0 +1,292 @@
+sampleID	oldSampleID	patientID	patientSampling	specimenConservation	samplePathologicalState	hadTreatment	treatmentInfo	specimenOrgan	tissueUnitExtraction	technology	Dataset	inConsensusClustering	nCells
+Carp_S01	3829-EC	Carp_P01	surgery	fresh	normal	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	11999
+Carp_S02	3861-EC	Carp_P02	surgery	fresh	normal	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	4460
+Carp_S03	3862-EC	Carp_P02	surgery	fresh	normal	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	4781
+Carp_S04	4160-EC	Carp_P03	surgery	fresh	normal	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	6772
+Carp_S05	4161-EC	Carp_P03	surgery	fresh	normal	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	1585
+Carp_S06	4346-EC	Carp_P04	surgery	fresh	normal	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	859
+Carp_S07	4347-EC	Carp_P04	surgery	fresh	normal	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	1630
+Carp_S08	4637-EC-1	Carp_P05	surgery	fresh	normal	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	2357
+Carp_S09	4637-EC-2	Carp_P05	surgery	fresh	normal	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	2880
+Carp_S10	4741-EC-1	Carp_P06	surgery	fresh	normal	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	2304
+Carp_S11	4741-EC-2	Carp_P06	surgery	fresh	normal	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	4135
+Carp_S12	119833	Carp_P07	surgery	fresh	tumor	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	940
+Carp_S13	125796	Carp_P08	surgery	fresh	adjacent	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	881
+Carp_S14	135041	Carp_P09	surgery	fresh	adjacent	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	4048
+Carp_S15	125421	Carp_P10	surgery	fresh	tumor	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	1207
+Carp_S19	129444	Carp_P14	surgery	fresh	tumor	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	1291
+Carp_S20	130289	Carp_P15	surgery	fresh	adjacent	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	2794
+Carp_S21	130450	Carp_P16	surgery	fresh	tumor	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	1728
+Carp_S22	130840	Carp_P16	surgery	fresh	tumor	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	2810
+Carp_S23	130742	Carp_P17	surgery	fresh	tumor	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	1221
+Carp_S24	135040	Carp_P18	surgery	fresh	tumor	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	3920
+Carp_S25	135156	Carp_P19	surgery	fresh	tumor	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	5006
+Carp_S26	137333	Carp_P20	surgery	fresh	tumor	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	8006
+Carp_S27	135334	Carp_P21	surgery	fresh	tumor	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	2111
+Carp_S28	135714	Carp_P22	surgery	fresh	tumor	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	1318
+Carp_S29	136365	Carp_P23	surgery	fresh	tumor	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	3891
+Carp_S30	136687	Carp_P24	surgery	fresh	tumor	NA	NA	pancreas	cell	Single_cell 10x 3' V3.1	Carpenter	TRUE	1956
+Steele_S01	PDAC_TISSUE_1	Steele_P01	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	1250
+Steele_S10	PDAC_TISSUE_10	Steele_P10	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	1277
+Steele_S11A	PDAC_TISSUE_11A	Steele_P11A	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	3229
+Steele_S11B	PDAC_TISSUE_11B	Steele_P11B	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	1784
+Steele_S12	PDAC_TISSUE_12	Steele_P12	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	1486
+Steele_S13	PDAC_TISSUE_13	Steele_P13	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	4933
+Steele_S15	PDAC_TISSUE_15	Steele_P15	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	2942
+Steele_S02	PDAC_TISSUE_2	Steele_P02	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	1756
+Steele_S03	PDAC_TISSUE_3	Steele_P03	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	2137
+Steele_S04	PDAC_TISSUE_4	Steele_P04	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	2019
+Steele_S05	PDAC_TISSUE_5	Steele_P05	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	1416
+Steele_S06	PDAC_TISSUE_6	Steele_P06	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	2124
+Steele_S07	PDAC_TISSUE_7	Steele_P07	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	7314
+Steele_S08	PDAC_TISSUE_8	Steele_P08	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	4390
+Steele_S09	PDAC_TISSUE_9	Steele_P09	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	4109
+Steele_S16	PDAC_TISSUE_16	Steele_P16	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x	Steele	TRUE	945
+Zhang_S01YF	Case1-YF	Zhang_P01	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Zhang	TRUE	10011
+Zhang_S01ZY	Case1-ZY	Zhang_P01	surgery	fresh	tumor	False	naive	liver	cell	SingleCell 10x 3' v3.1	Zhang	TRUE	9423
+Zhang_S02ZC	Case2-ZC	Zhang_P02	surgery	fresh	normal	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Zhang	TRUE	6470
+Zhang_S02YF	Case2-YF	Zhang_P02	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Zhang	TRUE	11486
+Zhang_S02ZY	Case2-ZY	Zhang_P02	surgery	fresh	tumor	False	naive	liver	cell	SingleCell 10x 3' v3.1	Zhang	TRUE	9190
+Zhang_S03YF	Case3-YF	Zhang_P03	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Zhang	TRUE	8405
+Zhang_S03ZY	Case3-ZY	Zhang_P03	surgery	fresh	tumor	False	naive	liver	cell	SingleCell 10x 3' v3.1	Zhang	TRUE	7962
+Zhang_S04ZY	Case4-ZY	Zhang_P04	biopsy	fresh	tumor	False	naive	liver	cell	SingleCell 10x 3' v3.1	Zhang	TRUE	1432
+Hwang_ST25	T25	T25	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	2902
+Hwang_SU2	U2	U2	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	7562
+Hwang_SU16	U16	U16	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	3532
+Hwang_ST4	T4	T4	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	4491
+Hwang_SU15	U15	U15	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	6460
+Hwang_SU18	U18	U18	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	7609
+Hwang_ST16	T16	T16	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	7254
+Hwang_ST23	T23	T23	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	6717
+Hwang_ST7	T7	T7	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	6318
+Hwang_ST22	T22	T22	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	4915
+Hwang_SU7	U7	U7	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	4607
+Hwang_ST5	T5	T5	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	5229
+Hwang_SU12	U12	U12	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	6381
+Hwang_SU10	U10	U10	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	7032
+Hwang_SU5	U5	U5	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	6563
+Hwang_SU3	U3	U3	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	6277
+Hwang_ST18	T18	T18	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	2688
+Hwang_SU11	U11	U11	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	6235
+Hwang_ST20	T20	T20	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	5579
+Hwang_SU13	U13	U13	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	4892
+Hwang_SU14	U14	U14	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	4602
+Hwang_ST6	T6	T6	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	7447
+Hwang_ST17	T17	T17	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	1227
+Hwang_ST2	T2	T2	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	5152
+Hwang_SU1	U1	U1	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	6160
+Hwang_SU9	U9	U9	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	8823
+Hwang_SU6	U6	U6	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	6996
+Hwang_SU4	U4	U4	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	2268
+Hwang_ST13A	T13A	T13A	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	4363
+Hwang_ST14	T14	T14	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	8273
+Hwang_ST15	T15	T15	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	3823
+Hwang_ST3	T3	T3	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	4861
+Hwang_ST1	T1	T1	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	2219
+Hwang_ST10	T10	T10	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	2391
+Hwang_ST12	T12	T12	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	4076
+Hwang_ST24	T24	T24	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	2753
+Hwang_ST21	T21	T21	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	1857
+Hwang_ST11	T11	T11	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	4740
+Hwang_SU17	U17	U17	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	5006
+Hwang_SU8	U8	U8	surgery	frozen	tumor	False	naive	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	6283
+Hwang_ST19	T19	T19	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	3520
+Hwang_ST13B	T13B	T13B	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	5125
+Hwang_ST8	T8	T8	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	1615
+Hwang_ST9	T9	T9	surgery	frozen	tumor	True	neoadjuvant	pancreas	nucleus	Single_cell 10x 3' V2 or V3	Hwang	TRUE	2652
+Werba_S01	P01	Werba_P01	biopsy	fresh	tumor	False	naive	liver	cell	SingleCell 10x 3' v3	Werba	TRUE	6179
+Werba_S02	P02	Werba_P02	biopsy	fresh	tumor	False	naive	liver	cell	SingleCell 10x 3' v3	Werba	TRUE	4163
+Werba_S03	P03	Werba_P03	surgery	fresh	tumor	True	treated	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	29128
+Werba_S04	P04	Werba_P04	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	3109
+Werba_S05	P05	Werba_P05	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	17432
+Werba_S06	P06	Werba_P06	biopsy	fresh	tumor	True	treated	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	4491
+Werba_S07	P07	Werba_P07	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	5227
+Werba_S08	P08	Werba_P08	surgery	fresh	tumor	True	treated	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	9391
+Werba_S09	P09	Werba_P09	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	1954
+Werba_S10	P10	Werba_P10	surgery	fresh	tumor	True	treated	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	6091
+Werba_S11	P11	Werba_P11	biopsy	fresh	tumor	False	naive	liver	cell	SingleCell 10x 3' v3	Werba	TRUE	9371
+Werba_S12	P12	Werba_P12	biopsy	fresh	tumor	True	treated	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	4764
+Werba_S13	P13	Werba_P13	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	2794
+Werba_S14	P14	Werba_P14	surgery	fresh	tumor	True	treated	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	19265
+Werba_S15	P15	Werba_P15	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	8888
+Werba_S16	P16	Werba_P16	biopsy	fresh	tumor	False	naive	liver	cell	SingleCell 10x 3' v3	Werba	TRUE	3725
+Werba_S17	P17	Werba_P17	biopsy	fresh	tumor	True	treated	liver	cell	SingleCell 10x 3' v3	Werba	TRUE	6022
+Werba_S18	P18	Werba_P18	biopsy	fresh	tumor	False	naive	liver	cell	SingleCell 10x 3' v3	Werba	TRUE	21182
+Werba_S19	P19	Werba_P19	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	17002
+Werba_S20	P20	Werba_P20	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	12167
+Werba_S21	P21	Werba_P21	biopsy	fresh	tumor	False	naive	liver	cell	SingleCell 10x 3' v3	Werba	TRUE	2809
+Werba_S22	P22	Werba_P22	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	6476
+Werba_S23	P23	Werba_P23	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	10055
+Werba_S24	P24	Werba_P24	biopsy	fresh	tumor	False	naive	liver	cell	SingleCell 10x 3' v3	Werba	TRUE	3773
+Werba_S25	P25	Werba_P25	biopsy	fresh	tumor	False	naive	liver	cell	SingleCell 10x 3' v3	Werba	TRUE	10843
+Werba_S26	P26	Werba_P26	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3	Werba	TRUE	15026
+Werba_S27	P27	Werba_P27	biopsy	fresh	tumor	False	naive	liver	cell	SingleCell 10x 3' v3	Werba	TRUE	11667
+Peng_ST1	T1	Peng_PT1	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1171
+Peng_ST2	T2	Peng_PT2	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	3041
+Peng_ST3	T3	Peng_PT3	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1317
+Peng_ST4	T4	Peng_PT4	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1027
+Peng_ST5	T5	Peng_PT5	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1115
+Peng_ST6	T6	Peng_PT6	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1871
+Peng_ST7	T7	Peng_PT7	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	747
+Peng_ST8	T8	Peng_PT8	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	697
+Peng_ST9	T9	Peng_PT9	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	2354
+Peng_ST10	T10	Peng_PT10	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	828
+Peng_ST11	T11	Peng_PT11	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	3142
+Peng_ST12	T12	Peng_PT12	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	2270
+Peng_ST13	T13	Peng_PT13	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	2058
+Peng_ST14	T14	Peng_PT14	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1998
+Peng_ST15	T15	Peng_PT15	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1956
+Peng_ST16	T16	Peng_PT16	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1634
+Peng_ST17	T17	Peng_PT17	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	2085
+Peng_ST18	T18	Peng_PT18	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1562
+Peng_ST19	T19	Peng_PT19	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	2927
+Peng_ST20	T20	Peng_PT20	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	482
+Peng_ST21	T21	Peng_PT21	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	807
+Peng_ST22	T22	Peng_PT22	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	2215
+Peng_ST23	T23	Peng_PT23	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	2865
+Peng_ST24	T24	Peng_PT24	surgery	fresh	tumor	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1817
+Peng_SN1	N1	Peng_PN1	surgery	fresh	normal	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	2823
+Peng_SN2	N2	Peng_PN2	surgery	fresh	normal	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1959
+Peng_SN3	N3	Peng_PN3	surgery	fresh	normal	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	455
+Peng_SN4	N4	Peng_PN4	surgery	fresh	normal	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	974
+Peng_SN5	N5	Peng_PN5	surgery	fresh	normal	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	887
+Peng_SN6	N6	Peng_PN6	surgery	fresh	normal	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	718
+Peng_SN7	N7	Peng_PN7	surgery	fresh	normal	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1115
+Peng_SN8	N8	Peng_PN8	surgery	fresh	normal	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1220
+Peng_SN9	N9	Peng_PN9	surgery	fresh	normal	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	2468
+Peng_SN10	N10	Peng_PN10	surgery	fresh	normal	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1543
+Peng_SN11	N11	Peng_PN11	surgery	fresh	normal	False	naive	pancreas	cell	Single_cell 10x 3' V2	Peng	TRUE	1382
+Storrs_S01	wu01	Storrs_P01	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	858
+Storrs_S02	wu02	Storrs_P02	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	1326
+Storrs_S03	wu03	Storrs_P03	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	1648
+Storrs_S04	wu04	Storrs_P04	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	122
+Storrs_S05	wu05	Storrs_P05	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	676
+Storrs_S07	wu07	Storrs_P06	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	3774
+Storrs_S09	wu09	Storrs_P07	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	126
+Storrs_S14	wu14	Storrs_P08	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	655
+Storrs_S15	wu15	Storrs_P09	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	1223
+Storrs_S16	wu16	Storrs_P10	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	2356
+Storrs_S18	wu18	Storrs_P11	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	1105
+Storrs_S22	wu22	Storrs_P12	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	574
+Storrs_S23	wu23	Storrs_P13	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	301
+Storrs_S24	wu24	Storrs_P14	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	407
+Storrs_S25	wu25	Storrs_P15	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	889
+Storrs_S26	wu26	Storrs_P16	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	2242
+Storrs_S27	wu27	Storrs_P17	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	2303
+Storrs_S28	wu28	Storrs_P18	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	2794
+Storrs_S29	wu29	Storrs_P19	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	1678
+Storrs_S30	wu30	Storrs_P20	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	1940
+Storrs_S31	wu31	Storrs_P21	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	1136
+Storrs_S32	wu32	Storrs_P22	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	862
+Storrs_S38	wu38	Storrs_P23	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	290
+Storrs_S39	wu39	Storrs_P24	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	9141
+Storrs_S42	wu42	Storrs_P25	biopsy	NA	tumor	False	NA	pancreas	cell	SingleCell 10x 5'	Storrs	TRUE	1106
+Ragh_S01	PANFR0383	Ragh_P01	biopsy	fresh	tumor	False	Gemcitabine/Nab-paclitaxel/Anti-hepatocyte growth factor antibody	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	1008
+Ragh_S02	PANFR0473	Ragh_P02	biopsy	fresh	tumor	False	FOLFIRINOX/ Niraparib/ PANFR0473Lu also post-Gemcitabine/Nab-paclitaxel	liver/lung	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	1370
+Ragh_S03	PANFR0489	Ragh_P03	biopsy	fresh	tumor	True	Gemcitabine/Nab-paclitaxel/ Gemcitabine/ 5-FU/Liposomal irinotecan/ FOLFOX	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	213
+Ragh_S04	PANFR0526	Ragh_P04	biopsy	fresh	tumor	False	naive	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	262
+Ragh_S05	PANFR0543	Ragh_P05	biopsy	fresh	tumor	False	naive	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	620
+Ragh_S06	PANFR0545	Ragh_P06	biopsy	fresh	tumor	False	naive	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	1318
+Ragh_S07	PANFR0552	Ragh_P07	biopsy	fresh	tumor	True	naive	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	1112
+Ragh_S08	PANFR0557	Ragh_P08	biopsy	fresh	tumor	True	FOLFIRINOX/ FOLFIRI	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	1863
+Ragh_S09	PANFR0562	Ragh_P09	biopsy	fresh	tumor	False	naive	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	1140
+Ragh_S10	PANFR0575	Ragh_P10	biopsy	fresh	tumor	False	naive	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	867
+Ragh_S11	PANFR0576	Ragh_P11	biopsy	fresh	tumor	False	naive	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	1011
+Ragh_S12	PANFR0578	Ragh_P12	biopsy	fresh	tumor	False	FOLFIRINOX/ Lung metastatectomy/ FOLFIRINOX/ 5-FU + radiation/ Olaparib/ Whipple	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	659
+Ragh_S13	PANFR0580	Ragh_P13	biopsy	fresh	tumor	False	naive	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	
+Ragh_S14	PANFR0583	Ragh_P14	biopsy	fresh	tumor	False	naive	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	492
+Ragh_S15	PANFR0588	Ragh_P15	biopsy	fresh	tumor	False	naive	peritoneum	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	85
+Ragh_S16	PANFR0592	Ragh_P16	biopsy	fresh	tumor	True	naive	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	2103
+Ragh_S17	PANFR0593	Ragh_P17	biopsy	fresh	tumor	True	Gemcitabine/Nab-paclitaxel/Trastuzumab	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	1170
+Ragh_S18	PANFR0598	Ragh_P18	biopsy	fresh	tumor	False	naive	omentum	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	792
+Ragh_S19	PANFR0604	Ragh_P19	biopsy	fresh	tumor	False	FOLFIRINOX	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	1277
+Ragh_S20	PANFR0605	Ragh_P20	biopsy	fresh	tumor	False	naive	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	848
+Ragh_S21	PANFR0631	Ragh_P21	biopsy	fresh	tumor	False	naive	liver	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	789
+Ragh_S22	PANFR0635	Ragh_P22	biopsy	fresh	tumor	False	naive	omentum	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	964
+Ragh_S23	PANFR0637	Ragh_P23	biopsy	fresh	tumor	False	naive	adrenal gland	cell	Seq-Well Library Nextera XT DNA tagmentation	Raghavan	TRUE	862
+Chen_S01	PDAC1	Chen_P01	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Chen	TRUE	7967
+Chen_S02	PDAC2	Chen_P02	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Chen	TRUE	6351
+Chen_S03	PDAC3	Chen_P03	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Chen	TRUE	6441
+Chen_S04	PDAC4	Chen_P04	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Chen	TRUE	6508
+Chen_S05	PDAC5	Chen_P05	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Chen	TRUE	4829
+Chen_S06	PDAC6	Chen_P06	surgery	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Chen	TRUE	5344
+Chen_S07	ADJ1	Chen_P01	surgery	fresh	adjacent	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Chen	TRUE	5669
+Chen_S08	ADJ2	Chen_P02	surgery	fresh	adjacent	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Chen	TRUE	6336
+Chen_S09	ADJ3	Chen_P03	surgery	fresh	adjacent	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Chen	TRUE	3170
+Chen_S10	ADJ4	Chen_P04	surgery	fresh	adjacent	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Chen	TRUE	5418
+Chen_S11	ADJ5	Chen_P05	surgery	fresh	adjacent	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Chen	TRUE	4602
+Chen_S12	ADJ6	Chen_P06	surgery	fresh	adjacent	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Chen	TRUE	6371
+BelleDN_S01pre1	Pt1_Pre1	BelleDN_P01	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	16830
+BelleDN_S01pre2	Pt1_Pre2	BelleDN_P01	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	17570
+BelleDN_S01post1	Pt1_Post1	BelleDN_P01	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	14342
+BelleDN_S01post2	Pt1_Post2	BelleDN_P01	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	17225
+BelleDN_S02pre1	Pt2_Pre1	BelleDN_P02	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	574
+BelleDN_S02pre2	Pt2_Pre2	BelleDN_P02	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	429
+BelleDN_S03pre1	Pt3_Pre1	BelleDN_P03	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	16470
+BelleDN_S03pre2	Pt3_Pre2	BelleDN_P03	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	12819
+BelleDN_S04pre1	Pt4_Pre	BelleDN_P04	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	8889
+BelleDN_S04post1	Pt4_Post	BelleDN_P04	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	7237
+BelleDN_S05pre1	Pt6_Pre	BelleDN_P05	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	21551
+BelleDN_S05post1	Pt6_Post	BelleDN_P05	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	12489
+BelleDN_S06pre1	Pt7_Pre1	BelleDN_P06	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	18764
+BelleDN_S06post1	Pt7_Post1	BelleDN_P06	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	9384
+BelleDN_S07pre2	Pt8_Pre2	BelleDN_P07	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	5371
+BelleDN_S07post1	Pt8_Post1	BelleDN_P07	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	12046
+BelleDN_S08pre2	Pt9_Pre2	BelleDN_P08	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	14491
+BelleDN_S08post1	Pt9_Post1	BelleDN_P08	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	50
+BelleDN_S09pre1	Pt11_Pre1	BelleDN_P09	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	11569
+BelleDN_S09post1	Pt11_Post1	BelleDN_P09	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	11821
+BelleDN_S10pre1	Pt12_Pre	BelleDN_P10	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	10865
+BelleDN_S10post1	Pt12_Post1	BelleDN_P10	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	13897
+BelleDN_S10post2	Pt12_Post2	BelleDN_P10	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	12991
+BelleDN_S11pre1	Pt13_Pre	BelleDN_P11	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	7673
+BelleDN_S11post1	Pt13_Post	BelleDN_P11	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	4831
+BelleDN_S12pre1	Pt18_Pre1	BelleDN_P12	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	14963
+BelleDN_S12post1	Pt18_Post1	BelleDN_P12	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	10992
+BelleDN_S12post2	Pt18_Post2	BelleDN_P12	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Belle-DeNardo	FALSE	11005
+LanderDN_S01Pre1	Pt1_Pre1	BelleDN_P01	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Lander-DeNardo	FALSE	16830
+LanderDN_S01Pre2	Pt1_Pre2	BelleDN_P01	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Lander-DeNardo	FALSE	17570
+LanderDN_S01Post1	Pt1_Post1	BelleDN_P01	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Lander-DeNardo	FALSE	14342
+LanderDN_S01Post2	Pt1_Post2	BelleDN_P01	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Lander-DeNardo	FALSE	17225
+LanderDN_S02Pre1	Pt2_Pre1	BelleDN_P02	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Lander-DeNardo	FALSE	574
+LanderDN_S02Pre2	Pt2_Pre2	BelleDN_P02	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Lander-DeNardo	FALSE	429
+LanderDN_S03Pre1	Pt3_Pre1	BelleDN_P03	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Lander-DeNardo	FALSE	16470
+LanderDN_S03Pre2	Pt3_Pre2	BelleDN_P03	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Lander-DeNardo	FALSE	12819
+LanderDN_S04Pre	Pt4_Pre	BelleDN_P04	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Lander-DeNardo	FALSE	8889
+LanderDN_S04Post	Pt4_Post	BelleDN_P04	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Lander-DeNardo	FALSE	7237
+LanderDN_S05Pre	Pt6_Pre	BelleDN_P05	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 3' v3.1	Lander-DeNardo	FALSE	21551
+LanderDN_S05Post	Pt6_Post	BelleDN_P05	biopsy	fresh	tumor	True	SBRT and FAKi (VS-6063)	pancreas	cell	SingleCell 10x 3' v3.1	Lander-DeNardo	FALSE	12489
+Lin_S01	P03	Lin_P01	surgery	fresh	tumor	NA	NA	pancreas	cell	SingleCell 10x 3' v2	Lin	FALSE	407
+Lin_S02	P04	Lin_P02	surgery	fresh	tumor	NA	NA	pancreas	cell	SingleCell 10x 3' v2	Lin	FALSE	143
+Lin_S03	P05	Lin_P03	surgery	fresh	tumor	NA	NA	pancreas	cell	SingleCell 10x 3' v2	Lin	FALSE	830
+Lin_S04	P06	Lin_P04	surgery	fresh	tumor	NA	NA	pancreas	cell	SingleCell 10x 3' v2	Lin	FALSE	289
+Lin_S05	P07	Lin_P05	surgery	fresh	tumor	NA	NA	pancreas	cell	SingleCell 10x 3' v2	Lin	FALSE	881
+Lin_S06	P08	Lin_P06	surgery	fresh	tumor	NA	NA	pancreas	cell	SingleCell 10x 3' v2	Lin	FALSE	767
+Lin_S07	P09	Lin_P07	surgery	fresh	tumor	NA	NA	pancreas	cell	SingleCell 10x 3' v2	Lin	FALSE	1076
+Lin_S08	P10	Lin_P08	surgery	fresh	tumor	NA	NA	pancreas	cell	SingleCell 10x 3' v2	Lin	FALSE	1139
+Lin_S09	P01	Lin_P09	surgery	fresh	tumor	NA	NA	pancreas	cell	SingleCell 10x 3' v2	Lin	FALSE	898
+Lin_S10	P02	Lin_P10	surgery	fresh	tumor	NA	NA	pancreas	cell	SingleCell 10x 3' v2	Lin	FALSE	1570
+Lin_S11	MET01	Lin_P11	biopsy	fresh	tumor	NA	NA	liver	cell	SingleCell 10x 3' v2	Lin	FALSE	420
+Lin_S12	MET02	Lin_P12	biopsy	fresh	tumor	NA	NA	liver	cell	SingleCell 10x 3' v2	Lin	FALSE	742
+Lin_S13	MET03	Lin_P13	biopsy	fresh	tumor	NA	NA	omentum	cell	SingleCell 10x 3' v2	Lin	FALSE	125
+Lin_S14	MET04	Lin_P14	biopsy	fresh	tumor	NA	NA	liver	cell	SingleCell 10x 3' v2	Lin	FALSE	258
+Lin_S15	MET05	Lin_P15	biopsy	fresh	tumor	NA	NA	liver	cell	SingleCell 10x 3' v2	Lin	FALSE	2885
+Lin_S16	MET06	Lin_P16	biopsy	fresh	tumor	NA	NA	liver	cell	SingleCell 10x 3' v2	Lin	FALSE	2494
+Lee_S01	P1	Lee_P01	biopsy	fresh	tumor	True	"gemcitabine;paclitaxel"	pancreas	cell	SingleCell 10x 5' or 3'	Lee	FALSE	1550
+Lee_S02	P2	Lee_P02	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 5' or 3'	Lee	FALSE	1086
+Lee_S03	P3	Lee_P03	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 5' or 3'	Lee	FALSE	7159
+Lee_S04	P4	Lee_P04	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 5' or 3'	Lee	FALSE	2459
+Lee_S05	P5	Lee_P05	biopsy	fresh	tumor	False	naive	pancreas	cell	SingleCell 10x 5' or 3'	Lee	FALSE	797
+Lee_S06	VM	Lee_P06	biopsy	fresh	tumor	True	"5-fluorouracil;liposmal irinotecan"	vagina	cell	SingleCell 10x 5' or 3'	Lee	FALSE	2212
+Lee_S07	LiM	Lee_P07	biopsy	fresh	tumor	False	naive	liver	cell	SingleCell 10x 5' or 3'	Lee	FALSE	11819
+Lee_S08	LuM	Lee_P08	biopsy	fresh	tumor	True	"evofosfamide;ipilimumab"	lung	cell	SingleCell 10x 5' or 3'	Lee	FALSE	4024
+Lee_S10	PBMC-P1	Lee_P10	biopsy	fresh	normal	True	"gemcitabine;paclitaxel"	blood	cell	SingleCell 10x 5' or 3'	Lee	FALSE	4296
+Lee_S11	PBMC-P2	Lee_P11	biopsy	fresh	normal	False	naive	blood	cell	SingleCell 10x 5' or 3'	Lee	FALSE	3316
+Lee_S12	PBMC-P3	Lee_P12	biopsy	fresh	normal	False	naive	blood	cell	SingleCell 10x 5' or 3'	Lee	FALSE	3469
+Lee_S13	PBMC-P4	Lee_P13	biopsy	fresh	normal	False	naive	blood	cell	SingleCell 10x 5' or 3'	Lee	FALSE	3206
+Lee_S14	PBMC-VM	Lee_P14	biopsy	fresh	normal	True	"5-fluorouracil;liposmal irinotecan"	blood	cell	SingleCell 10x 5' or 3'	Lee	FALSE	3653
+Lee_S15	PBMC-LiM	Lee_P15	biopsy	fresh	normal	False	naive	blood	cell	SingleCell 10x 5' or 3'	Lee	FALSE	3220
+Lee_S16	PBMC-LuM	Lee_P16	biopsy	fresh	normal	True	"evofosfamide;ipilimumab"	blood	cell	SingleCell 10x 5' or 3'	Lee	FALSE	4038
+Lee_S17	PBMC-PM	Lee_P17	biopsy	fresh	normal	True	capecitabine	blood	cell	SingleCell 10x 5' or 3'	Lee	FALSE	4735
+Monc_S01	PDAC_A	Monc_P01	surgery	fresh	tumor	False	naive	pancreas	cell	inDrop	Moncada	FALSE	1911
+Monc_S02	PDAC_B	Monc_P02	surgery	fresh	tumor	False	naive	pancreas	cell	inDrop	Moncada	FALSE	1729

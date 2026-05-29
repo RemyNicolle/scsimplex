@@ -1,0 +1,263 @@
+{
+  "mapping_metrics": {
+    "query_bias_agreement": 0.75,
+    "query_common_branch_height_clr": 4008.0506496048215,
+    "query_common_branch_height_log1p": 2856.396280715468,
+    "query_knn_clr_entropy_mean": 0.7812141670484202,
+    "query_knn_clr_majority_mean": 0.7078888888888889,
+    "query_knn_clr_unique": 1.0,
+    "query_knn_log1p_entropy_mean": 1.0077405984116614,
+    "query_knn_log1p_majority_mean": 0.4716666666666667,
+    "query_knn_log1p_unique": 2.0,
+    "query_knn_log1p_vs_clr_agreement": 0.6766666666666666,
+    "query_knn_tree_homogeneity_clr": 0.7078888888888889,
+    "query_knn_tree_homogeneity_log1p": 0.4716666666666667,
+    "query_mnb_bias_entropy_mean": 0.38691694707986063,
+    "query_mnb_bias_score_gap_mean": 5.314507293974024,
+    "query_mnb_bias_unique": 4.0,
+    "query_mnb_nobias_entropy_mean": 0.5001024978247358,
+    "query_mnb_nobias_score_gap_mean": 4.276400964773108,
+    "query_mnb_nobias_unique": 6.0,
+    "reference_30nn_homogeneity_clr": 0.6166666666666667,
+    "reference_30nn_homogeneity_log1p": 0.606
+  },
+  "refdata_multiplets": [
+    {
+      "median_lrt": 82.75867479779481,
+      "median_multiplet_score": 1.0,
+      "multiplet_fraction": 0.5746606334841629,
+      "n_pseudobulks": 2210.0,
+      "sample": "BelleDN_raw"
+    },
+    {
+      "median_lrt": 0.0,
+      "median_multiplet_score": 0.0,
+      "multiplet_fraction": 0.4380305602716469,
+      "n_pseudobulks": 1178.0,
+      "sample": "Carpenter_raw"
+    },
+    {
+      "median_lrt": 3.607429349445738,
+      "median_multiplet_score": 0.9424413462616139,
+      "multiplet_fraction": 0.4987405541561713,
+      "n_pseudobulks": 794.0,
+      "sample": "Chen_raw"
+    },
+    {
+      "median_lrt": 33.19155928015243,
+      "median_multiplet_score": 0.9999999914904244,
+      "multiplet_fraction": 0.5666666666666667,
+      "n_pseudobulks": 1080.0,
+      "sample": "Hajkarim_raw"
+    },
+    {
+      "median_lrt": 20.06185571725655,
+      "median_multiplet_score": 0.9999925008883095,
+      "multiplet_fraction": 0.5406574394463668,
+      "n_pseudobulks": 1156.0,
+      "sample": "Hwang_raw"
+    },
+    {
+      "median_lrt": 19.775508310558507,
+      "median_multiplet_score": 0.9999912906519788,
+      "multiplet_fraction": 0.5409836065573771,
+      "n_pseudobulks": 244.0,
+      "sample": "Lin_raw"
+    },
+    {
+      "median_lrt": 48.910861105658114,
+      "median_multiplet_score": 0.9999999999972038,
+      "multiplet_fraction": 0.5741687979539642,
+      "n_pseudobulks": 782.0,
+      "sample": "Peng_raw"
+    },
+    {
+      "median_lrt": 23.886992331128567,
+      "median_multiplet_score": 0.9999989784027765,
+      "multiplet_fraction": 0.5401662049861495,
+      "n_pseudobulks": 361.0,
+      "sample": "Raghavan_raw"
+    },
+    {
+      "median_lrt": 1.2190239400806604,
+      "median_multiplet_score": 0.7300206042627594,
+      "multiplet_fraction": 0.4782608695652174,
+      "n_pseudobulks": 644.0,
+      "sample": "Steele_raw"
+    },
+    {
+      "median_lrt": 86.60817238864547,
+      "median_multiplet_score": 1.0,
+      "multiplet_fraction": 0.6121794871794872,
+      "n_pseudobulks": 624.0,
+      "sample": "Storrs_raw"
+    },
+    {
+      "median_lrt": 60.60141746880254,
+      "median_multiplet_score": 0.999999999999993,
+      "multiplet_fraction": 0.5626545754328112,
+      "n_pseudobulks": 2426.0,
+      "sample": "Werba_raw"
+    },
+    {
+      "median_lrt": 0.0,
+      "median_multiplet_score": 0.0,
+      "multiplet_fraction": 0.4166666666666667,
+      "n_pseudobulks": 720.0,
+      "sample": "Zhang_raw"
+    }
+  ],
+  "sample_metrics": [
+    {
+      "ari_vs_cellstates": 0.07595474512589698,
+      "bootstrap_cophenetic_clr_mean": 0.7979550366326208,
+      "bootstrap_cophenetic_clr_sd": 0.027588690817892825,
+      "bootstrap_cophenetic_log1p_mean": 0.8312483159015455,
+      "bootstrap_cophenetic_log1p_sd": 0.021938727982950865,
+      "compression_ratio": 5.0,
+      "kmeans_time_sec": 0.014618417000747286,
+      "mean_loglik_cellstates": -5711.081132511577,
+      "mean_loglik_kmeans": -5958.788755981863,
+      "n_cells": 300.0,
+      "n_genes": 3000.0,
+      "n_metacells": 60.0,
+      "nmi_vs_cellstates": 0.5121338371445788,
+      "pseudobulk_rows": 60.0,
+      "sample": "RNAmatrix_Hajk_S01"
+    },
+    {
+      "ari_vs_cellstates": -0.00022371121825292946,
+      "bootstrap_cophenetic_clr_mean": 0.7670951913593528,
+      "bootstrap_cophenetic_clr_sd": 0.02447953533628128,
+      "bootstrap_cophenetic_log1p_mean": 0.7584383907291833,
+      "bootstrap_cophenetic_log1p_sd": 0.08177471364189873,
+      "compression_ratio": 5.0,
+      "kmeans_time_sec": 0.008945749999838881,
+      "mean_loglik_cellstates": -3556.536054341433,
+      "mean_loglik_kmeans": -3886.8925644858855,
+      "n_cells": 300.0,
+      "n_genes": 3000.0,
+      "n_metacells": 60.0,
+      "nmi_vs_cellstates": 0.32863961044323453,
+      "pseudobulk_rows": 60.0,
+      "sample": "RNAmatrix_Hajk_S02"
+    },
+    {
+      "ari_vs_cellstates": 0.026701462974013428,
+      "bootstrap_cophenetic_clr_mean": 0.760279799914089,
+      "bootstrap_cophenetic_clr_sd": 0.025709812377062394,
+      "bootstrap_cophenetic_log1p_mean": 0.7486023111474759,
+      "bootstrap_cophenetic_log1p_sd": 0.022532699454380568,
+      "compression_ratio": 5.0,
+      "kmeans_time_sec": 0.013700916999368928,
+      "mean_loglik_cellstates": -6107.984649027621,
+      "mean_loglik_kmeans": -6355.6542132033455,
+      "n_cells": 300.0,
+      "n_genes": 3000.0,
+      "n_metacells": 60.0,
+      "nmi_vs_cellstates": 0.4499032111223659,
+      "pseudobulk_rows": 60.0,
+      "sample": "RNAmatrix_Hajk_S03"
+    },
+    {
+      "ari_vs_cellstates": -0.0002118021547218672,
+      "bootstrap_cophenetic_clr_mean": 0.6532918255528047,
+      "bootstrap_cophenetic_clr_sd": 0.1056906360272453,
+      "bootstrap_cophenetic_log1p_mean": 0.7973150029077102,
+      "bootstrap_cophenetic_log1p_sd": 0.04841497937669331,
+      "compression_ratio": 5.0,
+      "kmeans_time_sec": 0.008365041998331435,
+      "mean_loglik_cellstates": -5135.534800948333,
+      "mean_loglik_kmeans": -5678.337565547798,
+      "n_cells": 300.0,
+      "n_genes": 3000.0,
+      "n_metacells": 60.0,
+      "nmi_vs_cellstates": 0.4498320660486922,
+      "pseudobulk_rows": 60.0,
+      "sample": "RNAmatrix_Hajk_S04"
+    },
+    {
+      "ari_vs_cellstates": NaN,
+      "bootstrap_cophenetic_clr_mean": 0.6987066092549119,
+      "bootstrap_cophenetic_clr_sd": 0.06593214523407054,
+      "bootstrap_cophenetic_log1p_mean": 0.6760703658819341,
+      "bootstrap_cophenetic_log1p_sd": 0.0635975118806894,
+      "compression_ratio": 5.0,
+      "kmeans_time_sec": 0.019492000006721355,
+      "mean_loglik_cellstates": NaN,
+      "mean_loglik_kmeans": -6806.207838735038,
+      "n_cells": 300.0,
+      "n_genes": 3000.0,
+      "n_metacells": 60.0,
+      "nmi_vs_cellstates": NaN,
+      "pseudobulk_rows": 60.0,
+      "sample": "RNAmatrix_Hajk_S05"
+    },
+    {
+      "ari_vs_cellstates": NaN,
+      "bootstrap_cophenetic_clr_mean": 0.525262193826706,
+      "bootstrap_cophenetic_clr_sd": 0.015620423063731457,
+      "bootstrap_cophenetic_log1p_mean": 0.6182293201931239,
+      "bootstrap_cophenetic_log1p_sd": 0.02318066289684188,
+      "compression_ratio": 5.0,
+      "kmeans_time_sec": 0.011961458993027918,
+      "mean_loglik_cellstates": NaN,
+      "mean_loglik_kmeans": -3228.8678094502725,
+      "n_cells": 300.0,
+      "n_genes": 3000.0,
+      "n_metacells": 60.0,
+      "nmi_vs_cellstates": NaN,
+      "pseudobulk_rows": 60.0,
+      "sample": "RNAmatrix_HtanZ_S59"
+    },
+    {
+      "ari_vs_cellstates": NaN,
+      "bootstrap_cophenetic_clr_mean": 0.713834401280145,
+      "bootstrap_cophenetic_clr_sd": 0.022506159255742255,
+      "bootstrap_cophenetic_log1p_mean": 0.7719593494297959,
+      "bootstrap_cophenetic_log1p_sd": 0.04053498867228074,
+      "compression_ratio": 5.0,
+      "kmeans_time_sec": 0.007120916998246685,
+      "mean_loglik_cellstates": NaN,
+      "mean_loglik_kmeans": -2671.614912547112,
+      "n_cells": 300.0,
+      "n_genes": 3000.0,
+      "n_metacells": 60.0,
+      "nmi_vs_cellstates": NaN,
+      "pseudobulk_rows": 60.0,
+      "sample": "RNAmatrix_HtanZ_S60"
+    },
+    {
+      "ari_vs_cellstates": NaN,
+      "bootstrap_cophenetic_clr_mean": 0.3837925411601583,
+      "bootstrap_cophenetic_clr_sd": 0.056436272835531355,
+      "bootstrap_cophenetic_log1p_mean": 0.43058922235333724,
+      "bootstrap_cophenetic_log1p_sd": 0.05827233773467257,
+      "compression_ratio": 5.0,
+      "kmeans_time_sec": 0.007490292002330534,
+      "mean_loglik_cellstates": NaN,
+      "mean_loglik_kmeans": -3563.7586251923176,
+      "n_cells": 300.0,
+      "n_genes": 3000.0,
+      "n_metacells": 60.0,
+      "nmi_vs_cellstates": NaN,
+      "pseudobulk_rows": 60.0,
+      "sample": "RNAmatrix_HtanZ_S61"
+    }
+  ],
+  "tree_geometry_metrics": {
+    "pairwise_distance_spearman_log_vs_clr": -0.3140430994045166
+  },
+  "tree_metrics_clr": {
+    "bootstrap_branch_jaccard_mean": 0.14945652488065342,
+    "bootstrap_branch_jaccard_sd": 0.012947687591650601,
+    "bootstrap_cophenetic_corr_mean": 0.3660413740162028,
+    "cophenetic_corr": 0.41567954681881686
+  },
+  "tree_metrics_log1p": {
+    "bootstrap_branch_jaccard_mean": 0.11202287520981241,
+    "bootstrap_branch_jaccard_sd": 0.007907985776252345,
+    "bootstrap_cophenetic_corr_mean": 0.5575182809295033,
+    "cophenetic_corr": 0.5623828788664842
+  }
+}
