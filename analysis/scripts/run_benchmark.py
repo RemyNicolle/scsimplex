@@ -70,13 +70,30 @@ def _dense(matrix: object) -> np.ndarray:
     return np.asarray(matrix, dtype=float)
 
 
-def _load_gene_by_cell_tsv(path: Path, max_genes: int, max_cells: int) -> BenchmarkMatrix:
+def _load_gene_by_cell_tsv(
+    path: Path,
+    max_genes: int,
+    max_cells: int,
+    gene_names: Optional[np.ndarray] = None,
+) -> BenchmarkMatrix:
     usecols = list(range(min(max_cells, _count_cells(path)) + 1))
-    df = pd.read_csv(path, sep="\t", index_col=0, nrows=max_genes, usecols=usecols)
-    gene_names = df.index.astype(str).to_numpy()
+    nrows = max_genes if gene_names is None else None
+    df = pd.read_csv(path, sep="\t", index_col=0, nrows=nrows, usecols=usecols)
+    df.index = df.index.astype(str)
+    if gene_names is not None:
+        missing = [name for name in gene_names if name not in df.index]
+        if missing:
+            raise ValueError(f"Matrix '{path}' is missing {len(missing)} requested genes.")
+        df = df.loc[gene_names]
+    loaded_gene_names = df.index.astype(str).to_numpy()
     cell_names = df.columns.astype(str).to_numpy()
     matrix = df.to_numpy(dtype=np.float32, copy=False).T
-    return BenchmarkMatrix(matrix=matrix, gene_names=gene_names, cell_names=cell_names, dataset_name=path.stem)
+    return BenchmarkMatrix(
+        matrix=matrix,
+        gene_names=loaded_gene_names,
+        cell_names=cell_names,
+        dataset_name=path.stem,
+    )
 
 
 def _count_cells(path: Path) -> int:
@@ -88,6 +105,20 @@ def _count_cells(path: Path) -> int:
 def _count_genes(path: Path) -> int:
     with path.open("r", encoding="utf-8") as handle:
         return sum(1 for _ in handle) - 1
+
+
+def _shared_gene_names(paths: list[Path], max_genes: int) -> np.ndarray:
+    if not paths:
+        raise ValueError("At least one matrix path is required to determine shared genes.")
+
+    first_column = pd.read_csv(paths[0], sep="\t", usecols=[0]).iloc[:, 0].astype(str).to_numpy()
+    shared = first_column
+    for path in paths[1:]:
+        current = set(pd.read_csv(path, sep="\t", usecols=[0]).iloc[:, 0].astype(str).tolist())
+        shared = np.asarray([name for name in shared if name in current], dtype=str)
+    if shared.size == 0:
+        raise ValueError("Input matrices do not share a common gene set.")
+    return shared[:max_genes]
 
 
 def _make_adata(data: BenchmarkMatrix) -> SimpleAnnData:
@@ -424,29 +455,76 @@ def _mapping_metric_notes() -> list[str]:
     ]
 
 
-def _build_reference(ref_dir: Path, max_genes: int, max_cells: int) -> SimpleAnnData:
+def _align_gene_axes(datasets: list[SimpleAnnData]) -> list[SimpleAnnData]:
+    if not datasets:
+        return []
+
+    common_gene_names = datasets[0].var_names.astype(str).to_numpy()
+    for dataset in datasets[1:]:
+        current_names = set(dataset.var_names.astype(str).tolist())
+        common_gene_names = np.asarray([name for name in common_gene_names if name in current_names], dtype=str)
+    if common_gene_names.size == 0:
+        raise ValueError("Datasets do not share a common gene set.")
+
+    aligned = []
+    for dataset in datasets:
+        current_names = dataset.var_names.astype(str).to_numpy()
+        lookup = {name: index for index, name in enumerate(current_names)}
+        columns = np.asarray([lookup[name] for name in common_gene_names], dtype=int)
+        aligned.append(
+            SimpleAnnData(
+                X=sp.csr_matrix(_dense(dataset.X)[:, columns]),
+                obs=dataset.obs.copy(),
+                var=pd.DataFrame(index=common_gene_names),
+            )
+        )
+    return aligned
+
+
+def _build_reference(
+    ref_dir: Path,
+    max_genes: int,
+    max_cells: int,
+    gene_names: Optional[np.ndarray] = None,
+) -> SimpleAnnData:
     annot = pd.read_csv(ref_dir / "clusters_annot_k7.tsv", sep="\t")
     label_map = annot.set_index("pseudo_bulk")["annotation"].to_dict()
+    loaded_parts: list[BenchmarkMatrix] = []
+    paths = sorted(ref_dir.glob("*_raw.txt"))
+    selected_gene_names = gene_names if gene_names is not None else _shared_gene_names(paths, max_genes)
+
+    for path in paths:
+        loaded_parts.append(
+            _load_gene_by_cell_tsv(
+                path,
+                max_genes=max_genes,
+                max_cells=max_cells,
+                gene_names=selected_gene_names,
+            )
+        )
+
+    if not loaded_parts:
+        raise ValueError(f"No reference count files were found in '{ref_dir}'.")
+
+    gene_names = loaded_parts[0].gene_names
+    for data in loaded_parts[1:]:
+        current_names = set(data.gene_names.tolist())
+        gene_names = np.asarray([name for name in gene_names if name in current_names], dtype=str)
+    if gene_names.size == 0:
+        raise ValueError("Reference files do not share a common gene set.")
+
     matrix_parts = []
     obs_frames = []
-    gene_names: Optional[np.ndarray] = None
-
-    for path in sorted(ref_dir.glob("*_raw.txt")):
-        data = _load_gene_by_cell_tsv(path, max_genes=max_genes, max_cells=max_cells)
-        if gene_names is None:
-            gene_names = data.gene_names
-        elif not np.array_equal(gene_names, data.gene_names):
-            common = np.intersect1d(gene_names, data.gene_names, assume_unique=False)
-            if common.size == 0:
-                raise ValueError("Reference files do not share a common gene set.")
-            gene_names = common
-        matrix_parts.append(data.matrix)
+    for data in loaded_parts:
+        gene_lookup = {name: index for index, name in enumerate(data.gene_names)}
+        columns = np.asarray([gene_lookup[name] for name in gene_names], dtype=int)
+        matrix_parts.append(data.matrix[:, columns])
         obs_frames.append(pd.DataFrame(index=data.cell_names))
 
     combined = np.concatenate(matrix_parts, axis=0)
     obs = pd.concat(obs_frames, axis=0)
     obs["reference_state"] = [label_map.get(name, "unknown") for name in obs.index]
-    var = pd.DataFrame(index=gene_names if gene_names is not None else np.array([], dtype=str))
+    var = pd.DataFrame(index=gene_names)
     return SimpleAnnData(X=sp.csr_matrix(combined), obs=obs, var=var)
 
 
@@ -455,15 +533,22 @@ def _load_refdata_datasets(ref_dir: Path, max_genes: int) -> list[SimpleAnnData]
     pseudo_to_cluster = annot.set_index("pseudo_bulk")["cluster"].to_dict()
     pseudo_to_annotation = annot.set_index("pseudo_bulk")["annotation"].to_dict()
     datasets: list[SimpleAnnData] = []
+    paths = sorted(ref_dir.glob("*_raw.txt"))
+    gene_names = _shared_gene_names(paths, max_genes)
 
-    for path in sorted(ref_dir.glob("*_raw.txt")):
-        data = _load_gene_by_cell_tsv(path, max_genes=max_genes, max_cells=_count_cells(path))
+    for path in paths:
+        data = _load_gene_by_cell_tsv(
+            path,
+            max_genes=max_genes,
+            max_cells=_count_cells(path),
+            gene_names=gene_names,
+        )
         obs = pd.DataFrame(index=data.cell_names)
         obs["cluster"] = [pseudo_to_cluster.get(name, -1) for name in data.cell_names]
         obs["annotation"] = [pseudo_to_annotation.get(name, "unknown") for name in data.cell_names]
         obs["dataset"] = path.stem
         datasets.append(SimpleAnnData(X=sp.csr_matrix(data.matrix), obs=obs, var=pd.DataFrame(index=data.gene_names)))
-    return datasets
+    return _align_gene_axes(datasets)
 
 
 def _run_refdata_multiplets(ref_dir: Path, max_genes: int) -> pd.DataFrame:
@@ -503,7 +588,8 @@ def _concat_datasets(datasets: list[SimpleAnnData]) -> SimpleAnnData:
     return SimpleAnnData(X=sp.csr_matrix(combined), obs=obs, var=pd.DataFrame(index=gene_names))
 
 
-def _compare_mapping(reference: SimpleAnnData, query: SimpleAnnData, anchor_label: str) -> dict[str, float]:
+def _compare_mapping(reference: SimpleAnnData, query: SimpleAnnData) -> dict[str, float]:
+    reference, query = _align_gene_axes([reference, query])
     ref_dense = _dense(reference.X)
     query_dense = _dense(query.X)
     ref_labels = reference.obs["reference_state"].astype(str).to_numpy()
@@ -518,34 +604,19 @@ def _compare_mapping(reference: SimpleAnnData, query: SimpleAnnData, anchor_labe
     tree_log = _query_tree_metrics(ref_log, ref_labels, query_log, k=30)
     tree_clr = _query_tree_metrics(ref_clr, ref_labels, query_clr, k=30)
 
-    provisional = knn_log.copy()
-    query.obs["reference_state"] = provisional
-    shared_labels = [label for label in pd.Series(ref_labels).value_counts().index if label in set(provisional)]
-    chosen_anchor = anchor_label if anchor_label in set(provisional) else (shared_labels[0] if shared_labels else None)
-    if chosen_anchor is not None:
-        calibrate_capture_bias([reference, query], anchor_cluster_obs_key="reference_state", anchor_cluster_name=chosen_anchor)
-        query_bias = query.copy()
-        mnb_bias = map_multinomial_nb(query_bias, reference, reference_cluster_key="reference_state", use_bias_correction=True)
-        bias_gap, bias_entropy, bias_max_prob = _score_gap_and_entropy(query_bias.obsm["predicted_cell_state_scores"])
-        mnb_bootstrap_mean, mnb_bootstrap_sd = _mnb_bootstrap_agreement(
-            query,
-            reference,
-            "reference_state",
-            baseline_predictions=mnb_bias,
-            n_boot=3,
-            seed=0,
-        )
-    else:
-        mnb_bias = map_multinomial_nb(query, reference, reference_cluster_key="reference_state", use_bias_correction=False)
-        bias_gap, bias_entropy, bias_max_prob = _score_gap_and_entropy(query.obsm["predicted_cell_state_scores"])
-        mnb_bootstrap_mean, mnb_bootstrap_sd = _mnb_bootstrap_agreement(
-            query,
-            reference,
-            "reference_state",
-            baseline_predictions=mnb_bias,
-            n_boot=3,
-            seed=0,
-        )
+    _, reference_calibration = calibrate_capture_bias([reference])
+    query_bias = query.copy()
+    calibrate_capture_bias(query_bias, reference_calibration=reference_calibration)
+    mnb_bias = map_multinomial_nb(query_bias, reference, reference_cluster_key="reference_state", use_bias_correction=True)
+    bias_gap, bias_entropy, bias_max_prob = _score_gap_and_entropy(query_bias.obsm["predicted_cell_state_scores"])
+    mnb_bootstrap_mean, mnb_bootstrap_sd = _mnb_bootstrap_agreement(
+        query_bias,
+        reference,
+        "reference_state",
+        baseline_predictions=mnb_bias,
+        n_boot=3,
+        seed=0,
+    )
     query_nobias = query.copy()
     mnb_nobias = map_multinomial_nb(query_nobias, reference, reference_cluster_key="reference_state", use_bias_correction=False)
     nobias_gap, nobias_entropy, nobias_max_prob = _score_gap_and_entropy(query_nobias.obsm["predicted_cell_state_scores"])
@@ -755,9 +826,10 @@ def _query_tree_metrics(reference_features: np.ndarray, reference_labels: np.nda
 
 
 def main(argv: Optional[Iterable[str]] = None) -> int:
+    analysis_dir = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--benchmark-dir", type=Path, default=Path("scripts/Benchmark"))
-    parser.add_argument("--ref-dir", type=Path, default=Path("scripts/refdata"))
+    parser.add_argument("--benchmark-dir", type=Path, default=analysis_dir / "Benchmark")
+    parser.add_argument("--ref-dir", type=Path, default=analysis_dir / "refdata")
     parser.add_argument("--output-dir", type=Path, default=Path("benchmark_reports"))
     parser.add_argument("--samples", nargs="*", default=None)
     parser.add_argument("--max-genes", type=int, default=500)
@@ -787,11 +859,23 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
     sample_df = pd.DataFrame(sample_rows)
     sample_df.to_csv(args.output_dir / "sample_metrics.csv", index=False)
 
-    reference = _build_reference(args.ref_dir, max_genes=args.max_genes, max_cells=args.reference_max_cells)
-    query = _make_adata(_load_gene_by_cell_tsv(args.benchmark_dir / "RNAmatrix_HtanZ_S59.tsv", max_genes=args.max_genes, max_cells=args.max_cells))
-    anchor_candidates = reference.obs["reference_state"].astype(str).value_counts()
-    anchor_label = anchor_candidates.index[0] if not anchor_candidates.empty else "epithelial"
-    mapping_metrics = _compare_mapping(reference, query, anchor_label=anchor_label)
+    query_path = args.benchmark_dir / "RNAmatrix_HtanZ_S59.tsv"
+    mapping_gene_names = _shared_gene_names([*sorted(args.ref_dir.glob("*_raw.txt")), query_path], args.max_genes)
+    reference = _build_reference(
+        args.ref_dir,
+        max_genes=args.max_genes,
+        max_cells=args.reference_max_cells,
+        gene_names=mapping_gene_names,
+    )
+    query = _make_adata(
+        _load_gene_by_cell_tsv(
+            query_path,
+            max_genes=args.max_genes,
+            max_cells=args.max_cells,
+            gene_names=mapping_gene_names,
+        )
+    )
+    mapping_metrics = _compare_mapping(reference, query)
 
     ref_datasets = _load_refdata_datasets(args.ref_dir, max_genes=args.max_genes)
     ref_log_parts: list[np.ndarray] = []
@@ -799,23 +883,8 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
         ref_log_parts.append(_gene_centered_log1p(_dense(dataset.X)))
     ref_log = np.concatenate(ref_log_parts, axis=0)
 
-    annotation_sets = [set(dataset.obs["annotation"].astype(str).tolist()) for dataset in ref_datasets]
-    common_annotations = set.intersection(*annotation_sets) if annotation_sets else set()
-    if common_annotations:
-        anchor_candidates = pd.Series(
-            np.concatenate([dataset.obs["annotation"].astype(str).to_numpy() for dataset in ref_datasets], axis=0)
-        )
-        common_anchor = anchor_candidates[anchor_candidates.isin(common_annotations)].value_counts().index[0]
-    else:
-        anchor_candidates = pd.Series(
-            np.concatenate([dataset.obs["annotation"].astype(str).to_numpy() for dataset in ref_datasets], axis=0)
-        )
-        common_anchor = anchor_candidates.value_counts().index[0]
-    calibrate_capture_bias(ref_datasets, anchor_cluster_obs_key="annotation", anchor_cluster_name=common_anchor)
+    calibrate_capture_bias(ref_datasets)
     for dataset in ref_datasets:
-        beta = np.asarray(dataset.uns["capture_bias_beta"], dtype=float)
-        corrected = _dense(dataset.X) * beta[np.newaxis, :]
-        dataset.layers["capture_bias_corrected"] = corrected
         clr_transform(dataset, layer="capture_bias_corrected")
     ref_clr = np.concatenate([_dense(dataset.layers["X_clr"]) for dataset in ref_datasets], axis=0)
     tree_log_metrics = _tree_summary(ref_log, bootstrap=args.bootstrap, seed=0)

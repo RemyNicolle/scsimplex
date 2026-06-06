@@ -2,6 +2,7 @@ r"""Multinomial k-means for discrete micro-metacell aggregation."""
 
 from __future__ import annotations
 
+from numbers import Integral
 from typing import Optional
 
 import numpy as np
@@ -71,6 +72,17 @@ def multinomial_kmeans(
     """
 
     del n_neighbors
+
+    if isinstance(target_metacell_size, bool) or not isinstance(target_metacell_size, Integral):
+        raise TypeError("target_metacell_size must be a positive integer.")
+    if target_metacell_size <= 0:
+        raise ValueError("target_metacell_size must be a positive integer.")
+    if isinstance(max_iter, bool) or not isinstance(max_iter, Integral):
+        raise TypeError("max_iter must be a positive integer.")
+    if max_iter <= 0:
+        raise ValueError("max_iter must be a positive integer.")
+    if not np.isfinite(tol) or tol < 0.0 or tol > 1.0:
+        raise ValueError("tol must be a finite number between zero and one.")
 
     rng = np.random.default_rng(random_state)
     work = adata.copy() if copy else adata

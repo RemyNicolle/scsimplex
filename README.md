@@ -19,16 +19,22 @@ pip install -e ".[dev,faiss]"
 ### CLR with pseudocount imputation and capture-bias correction
 
 ```python
-import anndata as ad
-from scsimplex.pp import calibrate_capture_bias, bayesian_impute_pseudocounts, clr_transform
+from scsimplex.pp import calibrate_capture_bias, clr_transform
 
-# `adatas` is a list of AnnData objects with a shared anchor cluster annotation.
-calibrate_capture_bias(adatas, anchor_cluster_obs_key="cell_type", anchor_cluster_name="your_anchor")
+# Learn a reference calibration from one or more datasets.
+# Raw counts are converted to simplex automatically when needed.
+calibrated_simplex, reference_calibration = calibrate_capture_bias(adatas)
+
+# Apply the learned reference to a new dataset later on.
+query_simplex = calibrate_capture_bias(query_adata, reference_calibration=reference_calibration)
 
 for adata in adatas:
-    bayesian_impute_pseudocounts(adata, out_layer="X_imputed")
-    clr_transform(adata, layer="X_imputed", out_layer="X_clr")
+    clr_transform(adata, layer="capture_bias_corrected", out_layer="X_clr")
 ```
+
+Dataset-center calibration assumes that differences between dataset compositional centers are
+technical capture effects. If dataset-average biology genuinely differs, this calibration will
+remove part of that biological difference.
 
 ### Cell-tree visualisation
 

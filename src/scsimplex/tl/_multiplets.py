@@ -26,6 +26,17 @@ def _to_dense_float(matrix: object) -> np.ndarray:
     return np.asarray(matrix, dtype=float)
 
 
+def _negative_mixture_log_likelihood(
+    lam: float,
+    theta0: np.ndarray,
+    theta1: np.ndarray,
+    cell_counts: np.ndarray,
+    eps: float,
+) -> float:
+    mixture = lam * theta0 + (1.0 - lam) * theta1
+    return -float(np.dot(cell_counts, np.log(mixture + eps)))
+
+
 def detect_multiplets(
     adata: ad.AnnData,
     layer: Optional[str] = None,
@@ -40,14 +51,17 @@ def detect_multiplets(
     .. math::
         \\theta(\\lambda) = \\lambda \\theta_k + (1-\\lambda)\\theta_{k'}
 
-    where :math:`k'` is the closest distinct cluster under multinomial log-likelihood.
+    where :math:`k'` ranges over all distinct clusters.
 
     The test statistic is
 
     .. math::
         \\Lambda = 2 \\left[\\max_{\\lambda \\in [0,1]} \\log L_1 - \\log L_0 \\right],
 
-    with a one degree-of-freedom chi-squared calibration.
+    Because the null lies on the boundary of the mixture-weight parameter, each fixed
+    alternative uses the one-sided asymptotic calibration
+    :math:`0.5\chi^2_1`. A Bonferroni correction accounts for selecting the best alternative
+    cluster.
 
     Args:
         adata: AnnData-like object.
@@ -61,10 +75,20 @@ def detect_multiplets(
 
     if cluster_key not in adata.obs:
         raise KeyError(f"Cluster key '{cluster_key}' not found in adata.obs.")
+    if not np.isfinite(alpha) or alpha <= 0.0 or alpha >= 1.0:
+        raise ValueError("alpha must be a finite number strictly between zero and one.")
 
     matrix = adata.layers[layer] if layer is not None else adata.X
     counts = _to_dense_float(matrix)
+    if counts.ndim != 2 or counts.shape[0] == 0 or counts.shape[1] == 0:
+        raise ValueError("The count matrix must contain at least one cell and one gene.")
+    if not np.isfinite(counts).all():
+        raise ValueError("The count matrix contains non-finite values.")
+    if np.any(counts < 0.0):
+        raise ValueError("Multiplet detection requires non-negative counts.")
     clusters = np.asarray(adata.obs[cluster_key].astype(str))
+    if clusters.shape[0] != counts.shape[0]:
+        raise ValueError("Cluster labels must match the number of count-matrix rows.")
     unique_clusters = np.unique(clusters)
 
     if unique_clusters.size < 2:
@@ -76,12 +100,15 @@ def detect_multiplets(
 
     eps = 1e-12
     profiles = np.zeros((unique_clusters.size, counts.shape[1]), dtype=float)
+    cluster_totals = np.zeros_like(profiles)
+    cluster_sizes = np.zeros(unique_clusters.size, dtype=int)
     for idx, cluster in enumerate(unique_clusters):
-        cluster_counts = counts[clusters == cluster].sum(axis=0) + eps
+        mask = clusters == cluster
+        cluster_sizes[idx] = int(mask.sum())
+        cluster_totals[idx] = counts[mask].sum(axis=0)
+        cluster_counts = cluster_totals[idx] + eps
         profiles[idx] = cluster_counts / cluster_counts.sum()
 
-    log_profiles = np.log(profiles + eps)
-    likelihood = counts @ log_profiles.T
     cluster_to_index = {label: i for i, label in enumerate(unique_clusters)}
 
     lrt = np.zeros(counts.shape[0], dtype=float)
@@ -91,26 +118,36 @@ def detect_multiplets(
     for cell_idx in range(counts.shape[0]):
         current_label = clusters[cell_idx]
         current_idx = cluster_to_index[current_label]
-        alt_scores = likelihood[cell_idx].copy()
-        alt_scores[current_idx] = -np.inf
-        alt_idx = int(np.argmax(alt_scores))
-
-        theta0 = profiles[current_idx]
-        theta1 = profiles[alt_idx]
         cell_counts = counts[cell_idx]
+        if cluster_sizes[current_idx] > 1:
+            null_counts = cluster_totals[current_idx] - cell_counts + eps
+            theta0 = null_counts / null_counts.sum()
+        else:
+            theta0 = profiles[current_idx]
 
         ll_null = float(np.dot(cell_counts, np.log(theta0 + eps)))
+        best_stat = 0.0
 
-        def objective(lam: float) -> float:
-            mixture = lam * theta0 + (1.0 - lam) * theta1
-            return -float(np.dot(cell_counts, np.log(mixture + eps)))
+        for alt_idx, theta1 in enumerate(profiles):
+            if alt_idx == current_idx:
+                continue
 
-        optimum = minimize_scalar(objective, bounds=(0.0, 1.0), method="bounded")
-        ll_alt = -float(optimum.fun)
-        stat = max(0.0, 2.0 * (ll_alt - ll_null))
+            optimum = minimize_scalar(
+                _negative_mixture_log_likelihood,
+                bounds=(0.0, 1.0),
+                args=(theta0, theta1, cell_counts, eps),
+                method="bounded",
+            )
+            ll_alt = -float(optimum.fun)
+            best_stat = max(best_stat, 2.0 * (ll_alt - ll_null))
 
+        stat = max(0.0, best_stat)
         lrt[cell_idx] = stat
-        p_value = float(chi2.sf(stat, df=1))
+        if stat <= 1e-12:
+            p_value = 1.0
+        else:
+            one_sided_p = 0.5 * float(chi2.sf(stat, df=1))
+            p_value = min(1.0, one_sided_p * (unique_clusters.size - 1))
         p_values[cell_idx] = p_value
         multiplet_probability[cell_idx] = 1.0 - p_value
 
