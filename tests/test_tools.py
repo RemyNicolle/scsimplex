@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from scsimplex.pp import multinomial_kmeans
+from scsimplex.pp._metacells import multinomial_kmeans
 from scsimplex.tl import detect_multiplets, map_multinomial_nb
 
 

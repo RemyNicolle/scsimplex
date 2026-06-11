@@ -16,25 +16,77 @@ pip install -e ".[dev,faiss]"
 
 ## Use
 
-### CLR with pseudocount imputation and capture-bias correction
+### Main preprocessing
 
 ```python
 from scsimplex.pp import calibrate_capture_bias, clr_transform
 
-# Learn a reference calibration from one or more datasets.
-# Raw counts are converted to simplex automatically when needed.
+# Learn a reference from one or more datasets.
 calibrated_simplex, reference_calibration = calibrate_capture_bias(adatas)
 
-# Apply the learned reference to a new dataset later on.
+# Apply that reference to one new dataset.
 query_simplex = calibrate_capture_bias(query_adata, reference_calibration=reference_calibration)
 
-for adata in adatas:
-    clr_transform(adata, layer="capture_bias_corrected", out_layer="X_clr")
+# CLR from counts or simplex.
+clr_transform(query_adata, layer="capture_bias_corrected", out_layer="X_clr")
 ```
 
-Dataset-center calibration assumes that differences between dataset compositional centers are
-technical capture effects. If dataset-average biology genuinely differs, this calibration will
-remove part of that biological difference.
+`bayesian_impute_pseudocounts`
+- input: count matrix or AnnData count layer
+- output: simplex matrix or stored simplex layer
+- use when you have raw counts
+
+`calibrate_capture_bias`
+- input: counts or simplex, as matrices or AnnData
+- not accepted: CLR
+- list mode: learn one reference from several datasets
+- single mode: apply an existing reference to one dataset
+- output: calibrated simplex
+
+`clr_transform`
+- input: counts or simplex in AnnData
+- not accepted: CLR as input
+- output: CLR coordinates in a layer
+
+### Pairwise-intersection distances
+
+```python
+from scsimplex.pp import pairwise_intersection_aitchison_distance_matrix
+
+result = pairwise_intersection_aitchison_distance_matrix(adatas)
+distances = result.distance_matrix
+diagnostics = result.diagnostics
+```
+
+`pairwise_intersection_aitchison_distance_matrix`
+- input: list of datasets, each as counts or simplex, as matrices or AnnData
+- not accepted: CLR
+- if gene names are present, pairwise intersections are used automatically
+- if gene names are absent, all matrices must already have the same column order and width
+- output: a global precomputed distance matrix plus diagnostics
+
+Simple clustering from the distance matrix:
+
+```python
+from scipy.cluster.hierarchy import fcluster, linkage
+from scipy.spatial.distance import squareform
+
+result = pairwise_intersection_aitchison_distance_matrix(adatas)
+tree = linkage(squareform(result.distance_matrix), method="average")
+labels = fcluster(tree, t=10, criterion="maxclust")
+```
+
+Ward does not take a precomputed distance matrix directly. To use Ward, embed first:
+
+```python
+from sklearn.cluster import AgglomerativeClustering
+from sklearn.manifold import MDS
+
+embedding = MDS(n_components=20, dissimilarity="precomputed", random_state=0).fit_transform(
+    result.distance_matrix
+)
+labels = AgglomerativeClustering(n_clusters=10, linkage="ward").fit_predict(embedding)
+```
 
 ### Cell-tree visualisation
 

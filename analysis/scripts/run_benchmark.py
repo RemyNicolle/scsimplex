@@ -23,7 +23,12 @@ from scipy.stats import spearmanr
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from scsimplex.pp import calibrate_capture_bias, clr_transform, multinomial_kmeans  # noqa: E402
+from scsimplex.pp import (  # noqa: E402
+    calibrate_capture_bias,
+    clr_transform,
+    multinomial_kmeans,
+    pairwise_intersection_aitchison_distance_matrix,
+)
 from scsimplex.tl import detect_multiplets, map_multinomial_nb  # noqa: E402
 
 
@@ -551,6 +556,25 @@ def _load_refdata_datasets(ref_dir: Path, max_genes: int) -> list[SimpleAnnData]
     return _align_gene_axes(datasets)
 
 
+def _load_refdata_datasets_native(ref_dir: Path, max_genes: int) -> list[SimpleAnnData]:
+    annot = pd.read_csv(ref_dir / "clusters_annot_k7.tsv", sep="\t")
+    pseudo_to_cluster = annot.set_index("pseudo_bulk")["cluster"].to_dict()
+    pseudo_to_annotation = annot.set_index("pseudo_bulk")["annotation"].to_dict()
+    datasets: list[SimpleAnnData] = []
+    for path in sorted(ref_dir.glob("*_raw.txt")):
+        data = _load_gene_by_cell_tsv(
+            path,
+            max_genes=max_genes,
+            max_cells=_count_cells(path),
+        )
+        obs = pd.DataFrame(index=data.cell_names)
+        obs["cluster"] = [pseudo_to_cluster.get(name, -1) for name in data.cell_names]
+        obs["annotation"] = [pseudo_to_annotation.get(name, "unknown") for name in data.cell_names]
+        obs["dataset"] = path.stem
+        datasets.append(SimpleAnnData(X=sp.csr_matrix(data.matrix), obs=obs, var=pd.DataFrame(index=data.gene_names)))
+    return datasets
+
+
 def _run_refdata_multiplets(ref_dir: Path, max_genes: int) -> pd.DataFrame:
     rows: list[dict[str, float]] = []
     annot = pd.read_csv(ref_dir / "clusters_annot_k7.tsv", sep="\t")
@@ -825,6 +849,44 @@ def _query_tree_metrics(reference_features: np.ndarray, reference_labels: np.nda
     }
 
 
+def _coefficient_of_variation(values: np.ndarray) -> float:
+    values = np.asarray(values, dtype=float)
+    values = values[np.isfinite(values)]
+    if values.size == 0:
+        return float("nan")
+    mean_value = float(np.mean(values))
+    if mean_value == 0.0:
+        return float("nan")
+    return float(np.std(values, ddof=0) / mean_value)
+
+
+def _pairwise_distance_summary(diagnostics: pd.DataFrame) -> dict[str, float]:
+    cross = diagnostics.loc[diagnostics["pair_type"] == "cross"].copy()
+    raw = cross["median_block_raw"].to_numpy(dtype=float)
+    normalized = cross["median_block_normalized"].to_numpy(dtype=float)
+    raw_cv = _coefficient_of_variation(raw)
+    normalized_cv = _coefficient_of_variation(normalized)
+    scale_values = diagnostics["scale"].to_numpy(dtype=float)
+    return {
+        "n_pairs_cross": float(cross.shape[0]),
+        "genes_per_pair_min": float(cross["n_genes"].min()) if not cross.empty else float("nan"),
+        "genes_per_pair_median": float(cross["n_genes"].median()) if not cross.empty else float("nan"),
+        "genes_per_pair_max": float(cross["n_genes"].max()) if not cross.empty else float("nan"),
+        "raw_cross_median_mean": float(np.mean(raw)) if raw.size else float("nan"),
+        "raw_cross_median_cv": raw_cv,
+        "normalized_cross_median_mean": float(np.mean(normalized)) if normalized.size else float("nan"),
+        "normalized_cross_median_cv": normalized_cv,
+        "normalized_to_raw_cv_ratio": float(normalized_cv / raw_cv)
+        if np.isfinite(raw_cv) and raw_cv > 0.0 and np.isfinite(normalized_cv)
+        else float("nan"),
+        "scale_min": float(np.min(scale_values)) if scale_values.size else float("nan"),
+        "scale_q25": float(np.quantile(scale_values, 0.25)) if scale_values.size else float("nan"),
+        "scale_median": float(np.median(scale_values)) if scale_values.size else float("nan"),
+        "scale_q75": float(np.quantile(scale_values, 0.75)) if scale_values.size else float("nan"),
+        "scale_max": float(np.max(scale_values)) if scale_values.size else float("nan"),
+    }
+
+
 def main(argv: Optional[Iterable[str]] = None) -> int:
     analysis_dir = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description=__doc__)
@@ -877,6 +939,28 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
     )
     mapping_metrics = _compare_mapping(reference, query)
 
+    ref_datasets_native = _load_refdata_datasets_native(args.ref_dir, max_genes=args.max_genes)
+    pairwise_distance_result = pairwise_intersection_aitchison_distance_matrix(
+        ref_datasets_native,
+        dataset_names=[
+            str(dataset.obs["dataset"].iloc[0]) if "dataset" in dataset.obs else f"dataset_{index}"
+            for index, dataset in enumerate(ref_datasets_native)
+        ],
+    )
+    pairwise_distance_result.diagnostics.to_csv(
+        args.output_dir / "refdata_pairwise_distance_diagnostics.csv",
+        index=False,
+    )
+    pd.DataFrame(
+        {
+            "global_index": np.arange(pairwise_distance_result.cell_names.shape[0], dtype=int),
+            "dataset": pairwise_distance_result.cell_dataset_names,
+            "cell_name": pairwise_distance_result.cell_names,
+        }
+    ).to_csv(args.output_dir / "refdata_pairwise_distance_cells.csv", index=False)
+    np.save(args.output_dir / "refdata_pairwise_distance_matrix.npy", pairwise_distance_result.distance_matrix)
+    pairwise_distance_summary = _pairwise_distance_summary(pairwise_distance_result.diagnostics)
+
     ref_datasets = _load_refdata_datasets(args.ref_dir, max_genes=args.max_genes)
     ref_log_parts: list[np.ndarray] = []
     for dataset in ref_datasets:
@@ -910,6 +994,8 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
         "tree_metrics_log1p": tree_log_metrics,
         "tree_metrics_clr": tree_clr_metrics,
         "tree_geometry_metrics": tree_geometry_metrics,
+        "pairwise_intersection_distance_summary": pairwise_distance_summary,
+        "pairwise_intersection_distance_diagnostics": pairwise_distance_result.diagnostics.to_dict(orient="records"),
         "refdata_multiplets": multiplet_df.to_dict(orient="records"),
     }
     (args.output_dir / "benchmark_summary.json").write_text(json.dumps(summary, indent=2, sort_keys=True))
@@ -929,6 +1015,13 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
         "",
         "## Geometry",
         _format_table(pd.DataFrame([tree_geometry_metrics])),
+        "",
+        "## Pairwise-intersection distances",
+        "Reference pseudobulks are kept on their native gene universes for this diagnostic.",
+        "Raw cross-pair medians should collapse toward a tighter distribution after scale normalization.",
+        _format_table(pd.DataFrame([pairwise_distance_summary])),
+        "",
+        _format_table(pairwise_distance_result.diagnostics),
         "",
         "## Query mapping",
         "Tested query sample: `RNAmatrix_HtanZ_S59.tsv`.",
@@ -961,10 +1054,15 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
     print(report_lines[8])
     print(_format_table(pd.DataFrame([tree_geometry_metrics])))
     print()
-    print(report_lines[10])
-    print("\n".join(report_lines[11:20]))
+    print("## Pairwise-intersection distances")
+    print("Reference pseudobulks are kept on their native gene universes for this diagnostic.")
+    print("Raw cross-pair medians should collapse toward a tighter distribution after scale normalization.")
+    print(_format_table(pd.DataFrame([pairwise_distance_summary])))
     print()
-    print(report_lines[21])
+    print("## Query mapping")
+    print("\n".join(report_lines[19:28]))
+    print()
+    print("## Refdata multiplets")
     print(_format_table(multiplet_df))
     return 0
 

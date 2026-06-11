@@ -112,6 +112,18 @@ def _to_simplex_matrix(matrix: object, input_type: InputType = "auto", alpha_pri
     return dense / dense.sum(axis=1, keepdims=True)
 
 
+def _clr_matrix(simplex: object) -> np.ndarray:
+    """Return CLR coordinates for a strictly positive simplex matrix."""
+
+    dense = _to_dense_float(simplex)
+    _validate_dense_matrix(dense, name="simplex matrix")
+    if np.any(dense <= 0.0):
+        raise ValueError("CLR coordinates require strictly positive simplex values.")
+    closed = dense / dense.sum(axis=1, keepdims=True)
+    log_simplex = np.log(closed)
+    return log_simplex - log_simplex.mean(axis=1, keepdims=True)
+
+
 def bayesian_impute_pseudocounts(
     adata: Union[ad.AnnData, object],
     layer: Optional[str] = None,
@@ -261,6 +273,5 @@ def clr_transform(
     simplex = _to_simplex_matrix(dense, input_type=resolved_type, alpha_prior=alpha_prior)
     if resolved_type == "counts":
         adata.layers["X_imputed"] = simplex
-    log_simplex = np.log(simplex)
-    adata.layers[out_layer] = log_simplex - log_simplex.mean(axis=1, keepdims=True)
+    adata.layers[out_layer] = _clr_matrix(simplex)
     return None
